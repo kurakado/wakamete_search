@@ -3,14 +3,14 @@ import urllib.request
 import sys
 
 baseurl="http://jinrou.dip.jp/~jinrou/kako/"
-sleepTime=0.3
+sleepTime=0.1
 htmlDataDir="../village_data/"
 
 if len(sys.argv)<3:
     print("input error: {} <start> <end>".format(sys.argv[0]))
     sys.exit(1)
 
-for village_num in range(sys.argv[1],sys.argv[2]+1):
+for village_num in range( int(sys.argv[1]),int(sys.argv[2])+1):
 #    print(village_num)
     url=baseurl+"{}.html".format(village_num)
     try:

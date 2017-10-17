@@ -55,16 +55,17 @@ def main(mode="debug"):
             
             #htmldata=open(filepath,"r").read()
             try:
+                print("open {}".format(filepath))
                 htmldata=open(filepath,"r").read()
             except:
                 logger.error("file read error:{}".format(filepath))
                 continue
         
-            ## HTMLデータの中から必要なデータを辞書型にパース
-            villageData=parseVillageData(htmldata)
-            
-            ## DBに村データを登録
             try:
+                ## HTMLデータの中から必要なデータを辞書型にパース
+                villageData=parseVillageData(htmldata)
+            
+                ## DBに村データを登録
                 ret=registData(c,conn,villageData)
                 if ret == True:
                     shutil.move(filepath,
@@ -72,7 +73,7 @@ def main(mode="debug"):
             except:
                 shutil.move(filepath,r"../village_data/unload/")
 
-            sleep(0.4)
+            sleep(1)
             fig=(fig + 1) % 20
             if fig==0:
                 conn.commit()
